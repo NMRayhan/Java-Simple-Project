@@ -1,0 +1,56 @@
+create database HotelManagement;
+
+create table Room (
+	RoomID int Not Null Primary Key,
+	RoomDetails Varchar(255) not null,
+	RoomRent int,
+	RoomType varchar(255)
+);
+
+create table UserTable (
+	userID int primary key,
+	userType varchar(255) not null,
+	userContact varchar(255) not null,
+);
+
+create Table Guest(
+	userID int foreign key references UserTable(userID),
+	userName varchar(255) not null,
+	DateOFBirth varchar(255) not null,
+	Gender varchar(255) not null,
+	Email varchar(255) not null,
+	Country varchar(255) not null,
+	userContact varchar(255) not null
+);
+
+create table Employee(
+	userID int foreign key references UserTable(userID),
+	EmpName varchar(255) not null,
+	EmpType varchar(255) not null,
+	EmpSalaries int not null,
+	EmpDetails varchar(255) not null,
+	RoomID int foreign key references Room(RoomID),
+);
+
+
+
+create table Parking (
+	userID int foreign key references UserTable(userID),
+	vehiclesNO varchar(255) not null,
+	parkingTime time not null,
+	ParkingDate date not null,
+	ParkingslotNumber int 
+);
+
+create table Restaurent(
+	FoodID int primary key,
+	FoodDetails varchar(255) not null,
+	FoodRent int not null,
+	OrderID int foreign key references FoodOrder(OrderID)
+);
+
+Create Table FoodOrder (
+	OrderID int Primary key,
+	FoodCount int not null,
+	FoodTotal int not null
+);
